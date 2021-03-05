@@ -1,0 +1,17 @@
+
+
+h2 Upload a Photo
+
+.row
+   .col-md-6.col-md-offset-3
+      form(method='POST' action="/photos" enctype="multipart/form-data")
+        div.form-group
+          label(for='name') Photo Title :
+          input#name.form-control(type='text', placeholder='photo title' name='title')
+        div.form-group
+          label(for='email') Description:
+          input#email.form-control(type='text', placeholder='description' name='description')
+        div.form-group
+          label(for='image') Image:
+          input#image.form-control(type='file', name='image')
+        button.btn.btn-primary(type='submit') Post Your Photo

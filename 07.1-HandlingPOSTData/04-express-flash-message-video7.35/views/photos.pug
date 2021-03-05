@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h4 My Photos
+
+  .row
+    each photo in photos
+     .col-sm-3
+       p Title:  #{photo.title}
+       p Description: #{photo.description}
+       img(src=photo.imageurl, width="250")
+  include newphoto

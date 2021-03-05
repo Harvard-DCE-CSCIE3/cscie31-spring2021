@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h4 My Photos (photos.pug, extends layout.pug)
+
+  .row
+    each photo in photos
+     .col-sm-4
+       p Title:  #{photo.title}
+       p Description: #{photo.description}
+       p Size: #{photo.size} | Filename: #{photo.originalname} | Uploaded: #{photo.createdAt}
+       img(src=photo.imageurl, width="250")
+       a(href='/photos/'+photo._id) Photo Details
+  include newphoto
