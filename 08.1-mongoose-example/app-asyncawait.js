@@ -30,11 +30,6 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@clu
 
     //  standard try/catch for errors
     try{
-      /* c1.save() returns a promise. We can use 'await' here to tag this as
-       *  asynchronous, and delay code below from processing until the Promise
-       *  is fulfilled.  If it's rejected, the 'catch' condition will execute
-       *  instead.
-       */
       let c = await c1.save();
       console.log(`saved character! ${c}`);
 

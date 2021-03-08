@@ -23,11 +23,16 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@clu
   // Use the model to create a new Character 'document' containing one record of data
   var c1 = new Character({ name: 'Adam Ewing', role: "Lawyer", story: "The Pacific Journal of Adam Ewing" });
 
-  /* Save the new character to the database
+ 
+ // newChar will keep the value of 'c', the saved record, in function scope so
+ // we can use it when we make our call to remove() 
+ let newChar;
+ 
+ /* Save the new character to the database
   * save() returns a Promise, which has a .then() method that's called
   *  when the operation completes (is either fulfilled or rejected)
   */
- let newChar;
+ 
  c1.save()
  .then((c)=>{
    console.log(`Saved Character ${c}`);
@@ -40,8 +45,10 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@clu
      console.log(`found characters! ${characters}`);
  })
  .then(()=>{
-   newChar.remove();
-   console.log("removed")
+   return newChar.remove();
+ })
+ .then((removedRecord)=>{
+   console.log(`Removed this record: ${removedRecord}`);
  })
  .catch((err)=>{console.log(`Error in save/find/remove${err}`)});
 
