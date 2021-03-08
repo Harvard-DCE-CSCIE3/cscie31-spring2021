@@ -1,34 +1,33 @@
-//app.js
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-// Connect to mongoDB on MongoDB Atlas
-// (This is a basic demo with no error handling)
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0.njksd.mongodb.net/cscie31?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0.njksd.mongodb.net/test?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
+  .then(()=>{
 
-console.log("connected!");
-console.log(mongoose.connection);
+    console.log("connected!");
+    const characterSchema = mongoose.Schema({
+      name: {type: String, required:true},
+      role: {type: String, required:false},
+      story: {type: String, required:false}
+    });
 
-// Create a Schema that describes the 'shape' of a document in our collection
-var characterSchema = mongoose.Schema({
-  name: {type: String, required:true},
-  role: {type: String, required:false},
-  story: {type: String, required:false}
-});
+    const Character = mongoose.model('Character', characterSchema);
 
-// Initialize a Model - the basis for a 'document' or record based on the schema
-var Character = mongoose.model('Character', characterSchema);
+    var c1 = new Character({ name: 'Bill Smoke', role: "Assassin", story: "Half-Lives: The First Luisa Rey Mystery" });
 
-// Use the model to create a new Character 'document' containing one record of data
-var c1 = new Character({ name: 'Bill Smoke', role: "Assassin", story: "Half-Lives: The First Luisa Rey Mystery" });
+    c1.save((err, c)=>{
+      if (err) {console.log(err);}
+      console.log(`Saved Character ${c}`);
 
-// Save the new character to the database
-c1.save((err, c)=>{
-  if (err){ console.log(err) }  // in a real app we'd probably return an error here
-  console.log(`saved character! ${c}` );
+      Character.find({}, (err, characters)=>{
+        if (err){console.log(err)}
+        console.log(`found characters! ${characters}`);
 
-  // now that we've saved, let's do a find() to see our record(s)
-  Character.find({}, (err, characters)=>{
-    if (err){console.log(err)}
-    console.log(`found characters! ${characters}`);
-  });
-});
+        c.remove((err, r)=>{
+          if (err) console.log(err);
+          console.log(`removed ${r}`);
+        });
+      });
+    });
+
+  })
+  .catch((err)=>{ console.error(`database connection error:${err}`); })

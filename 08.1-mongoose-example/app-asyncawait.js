@@ -5,8 +5,7 @@ const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
 // Connect to mongoDB on MongoDB Atlas
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0.njksd.mongodb.net/cscie31?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
-
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0.njksd.mongodb.net/test?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
   /* To use the async/await construct, the function that encloses our asychronous
    *  'await' calls must be preceded by the 'async' keyword. In this case, it was
    *  necessary to use the Promise returned by mongoose.connect() to create function
@@ -36,13 +35,14 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@clu
        *  is fulfilled.  If it's rejected, the 'catch' condition will execute
        *  instead.
        */
-      let s = await c1.save();
+      let c = await c1.save();
       console.log(`saved character! ${c}`);
 
-      // Technically, Model.find() does not return a Promise, but it's a Promise-like
-      //  object with a .then() method, and it does support async/await
       let characters = await Character.find({});
       console.log(`found characters! ${characters}`);
+
+      let res = await c.remove();
+      console.log(`Removed ${res}`);
     } catch(err){
       console.log(`Error! ${err}`);
     }
