@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h4 Logged-In User Profile
+  ul
+    li Email:  #{user.email}
+    li Created At: #{user.createdAt}
+  p 
+    a(href='/users/logout') Logout
+       

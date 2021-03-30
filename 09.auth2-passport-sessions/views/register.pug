@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+    p Register! 
+    form(method='POST' action="/users/register")
+      div.form-group
+        label(for='name') Email :
+        input#email.form-control(type='text', placeholder='email' name='email')
+      div.form-group
+        label(for='email') Password:
+        input#password.form-control(type='text', placeholder='password' name='password')
+      button.btn.btn-primary(type='submit') Register

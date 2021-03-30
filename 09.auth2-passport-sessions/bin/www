@@ -1,0 +1,13 @@
+var app = require('../app');
+require('dotenv').config();
+var http = require('http');
+
+var port = process.env.PORT || 8080;
+app.set('port', port);
+
+var server = http.createServer(app);
+
+server.listen(port);
+server.on('listening', () => {
+  console.log("Listening on %s", server.address().port);
+});

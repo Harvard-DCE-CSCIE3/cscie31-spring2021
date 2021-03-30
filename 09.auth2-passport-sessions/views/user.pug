@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h4 Logged-In User Profile (logged-in users only can reach this page)
+  ul
+    li Email:  #{user.email}
+    li Created At: #{user.createdAt}
+  p 
+    a(href='/users/logout') Logout
+       

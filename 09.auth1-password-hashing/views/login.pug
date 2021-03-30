@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    p Log In! 
+    if flashMsg.length > 0
+      .alert.alert-danger <strong>FLASH!</strong>#{flashMsg}
+    form(method='POST' action="/users/login")
+      div.form-group
+        label(for='name') Email :
+        input#email.form-control(type='text', placeholder='email' name='email')
+      div.form-group
+        label(for='email') Password:
+        input#password.form-control(type='text', placeholder='password' name='password')
+      button.btn.btn-primary(type='submit') Log In

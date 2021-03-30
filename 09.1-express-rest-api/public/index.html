@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing the API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body class="vsc-initialized">
+    <div class="container">
+      <h3>Photos API test</h3>
+      <p>This HTML/JS page tests the Photos API by listing all; then creating, finding, modifying, and deleting a photo resource using
+      the REST API. A few notes:
+        <ul>
+          <li>API endpoints, property names and values for the example photo app are hardcoded in the client-side /js/api.js file linked in this HTML page. </li>
+          <li>To test your own API you will have to modify these values.  </li>
+          <li>If your application does not need to handle file
+        uploads, you will not need to use this FORM's file input element in the HTML, or FormData in the JS, for your POST/create operation. Simple JSON will do. </li>
+          <li>See the console for output as the process completes.</li>
+        </ul>
+      </p>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group"><label for="image">Image:</label><input class="form-control" id="image" type="file" name="image"></div>
+            <button class="btn btn-primary" id="testme" type="button">Test the API</button></form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/api.js"></script>
+  </body>
+</html>

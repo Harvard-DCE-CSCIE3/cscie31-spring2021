@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h4 App Home Page
+
+  if user
+    p Logged in as 
+     ul
+       li Email: #{user.email}
+       li Created: #{user.createdAt}
+    a(href='/users/logout') Log Out
+  if !user  
+    p Not Logged In
+    p 
+     a(href='/users/login') Log In
+    p 
+     a(href='/users/register') Register
+  
