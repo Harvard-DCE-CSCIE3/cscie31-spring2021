@@ -1,0 +1,7 @@
+<h1> HI am the CSCI E31 Component</h1>
+My coursename is {{ coursename }}<br />
+There are {{ getNumberOfPhotos()}} photos <br />
+<app-photo
+  *ngFor='let photoObject of photoList'
+  [photo]="photoObject">
+</app-photo>

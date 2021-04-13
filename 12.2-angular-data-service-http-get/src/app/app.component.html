@@ -1,0 +1,14 @@
+<div class="container">
+  <p> HI am the CSCI E31 Component</p>
+  There are {{ getNumberOfPhotos() }} photos.
+  <p>Total Votes Received: {{ totalVotes }}, Most Recent Vote Recipient: {{ mostRecentVotedOn }}</p>
+
+  <div class="row">
+    <app-photo class="col-sm-3"
+      *ngFor='let photoObject of photoList'
+      [photo]="photoObject"
+      [baseUrl]="photoUrl"
+      (upvotedEvent)="handleUpvoted($event)">
+    </app-photo>
+  </div>
+</div>

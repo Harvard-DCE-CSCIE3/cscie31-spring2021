@@ -1,0 +1,26 @@
+<div *ngIf="photo">
+  <h3> {{ photo.title }} Details:</h3>
+  <div class="detailphoto"><img src="{{ photodisplayurl }}"></div>
+  <div *ngIf="!editing">
+    <div><span>Title: </span> {{ photo.title }}</div>
+    <div><span>Description: </span>{{ photo.description }}</div>
+    <div><span>Updated: </span>{{ photo.updatedAt }} | <span>Created: </span>{{ photo.createdAt }}</div>
+    <button class="btn btn-link" (click)="setEditMode(true)">edit</button>
+    <a class="btn btn-link" routerLink="/gallery">back to gallery</a>
+  </div>
+  </div>
+
+  <div *ngIf="editing">
+  <form #form="ngForm" (ngSubmit)="updatePhoto(form.value)">
+  	<div class="form-group">
+          <label for="titleField">Title:</label>
+          <input #title name="titleField" class="form-control" [ngModel]="photo.title">
+          <br />
+          <label for="descField">Description:</label>
+          <input name="descField" class="form-control" [ngModel]="photo.description">
+       </div>
+       <button type="submit">save</button>
+       <button type="button" (click)="setEditMode(false)">cancel</button>
+       <button type="button" (click)="deletePhoto()">delete this photo</button>
+  </form>
+  </div>

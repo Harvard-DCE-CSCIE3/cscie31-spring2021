@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body photo">
+    <a routerLink="/photo/{{photo._id}}">
+      <img  class="card-img-top"
+            [src]="photo.displayurl"
+            aria-controls="active"
+            style="max-height:250px;max-width:250px;">
+
+      <strong class="card-title">{{ photo.title }}</strong>
+      <p class="card-text">{{ photo.description }}</p>
+    </a>
+    <button (click)="upvote(photo.title)" [disabled]="voted">Upvote! ({{ votes }})</button>
+  </div>
+</div>

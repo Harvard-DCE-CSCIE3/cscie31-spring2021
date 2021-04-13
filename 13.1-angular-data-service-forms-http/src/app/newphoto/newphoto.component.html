@@ -1,0 +1,24 @@
+<div>
+  <h3> Upload a Photo</h3>
+  <form #newphotoForm="ngForm" (ngSubmit)="save(newphotoForm)">
+    <div>
+        <label>Title:
+          <input required minlength="2" #title="ngModel" placeholder="title" name="title" class="form-control" [(ngModel)]="photo.title">
+        </label>
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+          <div *ngIf="title.errors.minlength">
+            Title must be at least 2 characters long.
+          </div>
+        </div>
+        <br/>
+        <label>Description:
+          <input placeholder="description" name="description" class="form-control" [(ngModel)]="photo.description">
+        </label>
+        <br/>
+        <label>Select a File:
+          <input type="file" name="file" (change)="handleFileInput($event.target)">
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!newphotoForm.valid">save</button>
+  </form>
+</div>
